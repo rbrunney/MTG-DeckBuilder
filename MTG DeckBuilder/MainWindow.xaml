@@ -6,7 +6,19 @@
         xmlns:local="clr-namespace:MTG_DeckBuilder"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
-    <Grid>
+    <StackPanel>
+        <TextBox x:Name="txtCardSearch" Height="25" />
+        <Button Height="45" Width="150" Click="TestFetch" Content="Press Me"/>
         
-    </Grid>
+        <Grid x:Name="foundCards" HorizontalAlignment="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+        </Grid>
+        
+        
+    </StackPanel>
 </Window>
