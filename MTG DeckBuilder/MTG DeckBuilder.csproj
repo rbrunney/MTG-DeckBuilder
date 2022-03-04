@@ -54,6 +54,13 @@
             <Generator>MSBuild:Compile</Generator>
             <SubType>Designer</SubType>
         </ApplicationDefinition>
+        <Compile Include="MainMenu.xaml.cs">
+          <DependentUpon>MainMenu.xaml</DependentUpon>
+        </Compile>
+        <Compile Include="Search.xaml.cs">
+          <DependentUpon>Search.xaml</DependentUpon>
+        </Compile>
+        <Page Include="MainMenu.xaml" />
         <Page Include="MainWindow.xaml">
             <Generator>MSBuild:Compile</Generator>
             <SubType>Designer</SubType>
@@ -66,6 +73,7 @@
             <DependentUpon>MainWindow.xaml</DependentUpon>
             <SubType>Code</SubType>
         </Compile>
+        <Page Include="Search.xaml" />
     </ItemGroup>
     <ItemGroup>
         <Compile Include="Properties\AssemblyInfo.cs">
@@ -84,6 +92,15 @@
     <ItemGroup>
         <None Include="App.config" />
         <None Include="packages.config" />
+    </ItemGroup>
+    <ItemGroup>
+      <Resource Include="File\Resources\mtglogo.png" />
+    </ItemGroup>
+    <ItemGroup>
+      <Resource Include="File\Resources\mtg.png" />
+    </ItemGroup>
+    <ItemGroup>
+      <Resource Include="Fonts\GoudyMediaeval-Regular.ttf" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
