@@ -16,12 +16,13 @@ namespace MTG_DeckBuilder
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
             MainWindow mainWindow = Application.Current.MainWindow as MainWindow;
-            mainWindow.frmMainFrame.Content = new Search();
+            mainWindow.frmMainFrame.Content = new Login();
         }
 
         private void btnCreateAccount_Click(object sender, RoutedEventArgs e)
         {
-            
+            MainWindow mainWindow = Application.Current.MainWindow as MainWindow;
+            mainWindow.frmMainFrame.Content = new CreateAccount();
         }
 
         private void btnExit_Click(object sender, RoutedEventArgs e)

@@ -2,7 +2,6 @@
 using System.Windows.Controls;
 using System.Windows;
 using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using HtmlAgilityPack;
 
@@ -14,7 +13,7 @@ namespace MTG_DeckBuilder
         {
             InitializeComponent();
         }
-        private void TestFetch(object sender, RoutedEventArgs e)
+        private void btnSearch_Click(object sender, RoutedEventArgs e)
         {
             
             //Clearing Rows and Columns
@@ -30,14 +29,11 @@ namespace MTG_DeckBuilder
             if (dataList != null)
             {
                 foundCards.ColumnDefinitions.Clear();
-                foundCards.ColumnDefinitions.Add(new ColumnDefinition());
-                foundCards.ColumnDefinitions.Add(new ColumnDefinition());
-                foundCards.ColumnDefinitions.Add(new ColumnDefinition());
-                foundCards.ColumnDefinitions.Add(new ColumnDefinition());
-                
+
                 nodeCount = 0;
                 foreach (HtmlNode content in dataList)
                 {
+                    foundCards.ColumnDefinitions.Add(new ColumnDefinition());
                     FindImages(content, nodeCount);
                     if (nodeCount == 3)
                     {
@@ -52,11 +48,11 @@ namespace MTG_DeckBuilder
                 if (dataList != null)
                 {
                     foundCards.ColumnDefinitions.Clear();
-                    foundCards.ColumnDefinitions.Add(new ColumnDefinition());
-                    
+
                     nodeCount = 0;
                     foreach (HtmlNode content in dataList)
                     {
+                        foundCards.ColumnDefinitions.Add(new ColumnDefinition());
                         FindImages(content, nodeCount);
                         if (nodeCount == 3)
                         {
@@ -103,6 +99,11 @@ namespace MTG_DeckBuilder
             
             foundCards.Children.Add(imgCard);
         }
-        
+
+        private void btnBack_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow mainWindow = Application.Current.MainWindow as MainWindow;
+            mainWindow.frmMainFrame.Content = new Decks();
+        }
     }
 }

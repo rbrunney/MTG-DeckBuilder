@@ -9,7 +9,18 @@
     <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
         <StackPanel>
             <TextBox x:Name="txtCardSearch" Height="25" />
-            <Button Cursor="Hand" Height="45" Width="150" Click="TestFetch" Content="Press Me"/>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Button Cursor="Hand" Height="45" Width="150" Click="btnSearch_Click" Content="Search"/>
+                <Button Grid.Column="1" Cursor="Hand" Height="45" Width="150" Click="btnBack_Click" Content="Back"/>
+            </Grid>
+            
         
             <Grid x:Name="foundCards" HorizontalAlignment="Center">
                 <Grid.RowDefinitions>

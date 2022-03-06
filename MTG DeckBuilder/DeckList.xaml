@@ -1,0 +1,13 @@
+﻿<Page x:Class="MTG_DeckBuilder.DeckList"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:MTG_DeckBuilder"
+      mc:Ignorable="d"
+      Title="DeckList" Height="550" Width="1025">
+    <StackPanel>
+        <Label Content="Test Deck" HorizontalAlignment="Center"/>
+        <Button Content="Back" Height="45" Width="150" Click="btnBack_Click" />
+    </StackPanel>
+</Page>
