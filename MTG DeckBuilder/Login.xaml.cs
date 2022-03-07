@@ -7,6 +7,7 @@ using WPF;
 
 namespace MTG_DeckBuilder
 {
+
     public partial class Login : Page
     {
         public Login()
@@ -23,7 +24,7 @@ namespace MTG_DeckBuilder
             ht.Add("@Username", txtUsername.Text);
             ht.Add("@Email", txtUsername.Text);
 
-            sql = $"SELECT Username,Password FROM Users WHERE Username=@Username OR Email=@Email";
+            sql = $"SELECT ID, Username,Password FROM Users WHERE Username=@Username OR Email=@Email";
             dt = ExDB.GetDataTable("AwesomeDB", ht, sql);
 
             try
@@ -35,6 +36,9 @@ namespace MTG_DeckBuilder
                 }
                 else
                 {
+                    App.currentUser.Username = txtUsername.Text;
+                    App.currentUser.Password = txtPassword.Text;
+                    App.currentUser.ID = (int) dt.Rows[0]["ID"];
                     MainWindow mainWindow = Application.Current.MainWindow as MainWindow;
                     mainWindow.frmMainFrame.Content = new Decks();
                 }

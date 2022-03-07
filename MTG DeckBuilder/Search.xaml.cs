@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Collections;
+using System.Data;
 using System.Windows.Controls;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using HtmlAgilityPack;
+using WPF;
 
 namespace MTG_DeckBuilder
 {
@@ -89,7 +92,22 @@ namespace MTG_DeckBuilder
             
             imgCard.MouseLeftButtonDown += (s, e) =>
             {
-                MessageBox.Show(imgLink);
+                DataTable dt;
+                Hashtable ht = new Hashtable();
+                string sql = "";
+
+                ht.Add("@Name", App.currentDeck.Name);
+                sql = "SELECT DeckID FROM Decks WHERE Name = @Name";
+                dt = ExDB.GetDataTable("AwesomeDB", ht, sql);
+
+                ht.Clear();
+                ht.Add("@UserID", App.currentUser.ID);
+                ht.Add("@DeckID", (int) dt.Rows[0]["DeckID"]);
+                ht.Add("@CardLink", imgLink);
+
+                sql = $"INSERT INTO DeckList (UserID, DeckID, CardLink) VALUES(@UserID, @DeckID, @CardLink)";
+                ExDB.ExecuteIt("AwesomeDB", sql, ht);
+                MessageBox.Show("Card added to deck!");
             };
 
             if (nodeCount == 3)

@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:MTG_DeckBuilder"
+      xmlns:userControls="clr-namespace:MTG_DeckBuilder.UserControls"
       mc:Ignorable="d"
       Title="Decks" Height="550" Width="1025">
     <StackPanel>
@@ -25,12 +26,21 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Button Height="45" Width="150" Content="Create Deck" Click="btnDeckList_Click"/>
-            <Button Grid.Column="1" Height="45" Width="150" Content="Logout" Click="btnLogOut_Click"/>
+            <Button Cursor="Hand" Height="45" Width="150" Content="Create Deck" Click="btnDeckList_Click"/>
+            <Button Grid.Column="1" Cursor="Hand" Height="45" Width="150" Content="Logout" Click="btnLogOut_Click"/>
         </Grid>
-        
+        <ScrollViewer Height="335" Margin="0, 35" VerticalScrollBarVisibility="Auto">
+            <Grid x:Name="decks">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+            </Grid>
+        </ScrollViewer>
     </StackPanel>
 </Page>
