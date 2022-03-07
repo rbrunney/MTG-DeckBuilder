@@ -32,7 +32,8 @@ namespace MTG_DeckBuilder.UserControls
             string sql = "";
             
             ht.Add("@Name", DeckName);
-            sql = "SELECT DeckID FROM Decks WHERE Name = @Name";
+            ht.Add("@UserID", App.currentUser.ID);
+            sql = "SELECT DeckID FROM Decks WHERE Name = @Name AND UserID = @UserID";
             dt = ExDB.GetDataTable("AwesomeDB", ht, sql);
             
             ht.Clear();
@@ -43,8 +44,7 @@ namespace MTG_DeckBuilder.UserControls
 
             sql = "DELETE FROM Decks WHERE DeckID = @DeckID AND UserID = @UserID";
             ExDB.ExecuteIt("AwesomeDB", sql, ht);
-            
-            
+
             MainWindow mainWindow = Application.Current.MainWindow as MainWindow;
             mainWindow.frmMainFrame.Content = new Decks();
         }

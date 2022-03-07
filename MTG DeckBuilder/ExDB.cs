@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Data;
 using System.Collections;
+using System.Net;
+using System.Windows;
 
 namespace WPF
 {
@@ -89,7 +91,6 @@ namespace WPF
 
             foreach (DictionaryEntry hti in htParameters)
                 AddParam(ref sqlCmd, hti.Key.ToString(), hti.Value);
-
             x = sqlCmd.ExecuteNonQuery();
             sqlCmd.Connection.Close();
             dbconn.Close();

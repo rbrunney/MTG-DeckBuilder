@@ -72,10 +72,35 @@ namespace MTG_DeckBuilder
                 Width = 200,
                 Source = new BitmapImage(new Uri(imgLink)),
                 Margin = new Thickness(2),
+                Cursor = Cursors.Hand
             };
             
             imgCard.SetValue(Grid.ColumnProperty, nodeCount);
             imgCard.SetValue(Grid.RowProperty, cardList.RowDefinitions.Count);
+            imgCard.MouseLeftButtonDown += (s, e) =>
+            {
+                DataTable dt;
+                Hashtable ht = new Hashtable();
+                string sql = "";
+
+                ht.Add("@Name", App.currentDeck.Name);
+                ht.Add("@UserID", App.currentUser.ID);
+                sql = "SELECT DeckID FROM Decks WHERE Name = @Name AND UserID = @UserID";
+                dt = ExDB.GetDataTable("AwesomeDB", ht, sql);
+
+                ht.Clear();
+                ht.Add("@DeckID", (int) dt.Rows[0]["DeckID"]);
+                ht.Add("@CardLink", $"%{imgLink.Substring(innerHtml.IndexOf("//") + 2)}%");
+                ht.Add("@UserID", App.currentUser.ID);
+
+                sql = "DELETE FROM DeckList WHERE UserID = @UserID AND DeckID = @DeckID AND CardLink LIKE @CardLink";
+                ExDB.ExecuteIt("AwesomeDB", sql, ht);
+                
+                MessageBox.Show("Card has been removed!");
+                
+                MainWindow mainWindow = Application.Current.MainWindow as MainWindow;
+                mainWindow.frmMainFrame.Content = new DeckList();
+            };
 
             if (nodeCount == 3)
             {
