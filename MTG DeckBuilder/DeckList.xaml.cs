@@ -93,7 +93,7 @@ namespace MTG_DeckBuilder
                 ht.Add("@CardLink", $"%{imgLink.Substring(innerHtml.IndexOf("//") + 2)}%");
                 ht.Add("@UserID", App.currentUser.ID);
 
-                sql = "DELETE FROM DeckList WHERE UserID = @UserID AND DeckID = @DeckID AND CardLink LIKE @CardLink";
+                sql = "DELETE TOP(1) FROM DeckList WHERE UserID = @UserID AND DeckID = @DeckID AND CardLink LIKE @CardLink";
                 ExDB.ExecuteIt("AwesomeDB", sql, ht);
                 
                 MessageBox.Show("Card has been removed!");
